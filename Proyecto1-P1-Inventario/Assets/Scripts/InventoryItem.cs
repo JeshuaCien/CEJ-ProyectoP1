@@ -2,15 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.EventSystems;
 
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+
     [Header("UI")]
     public Image image;
+    public TextMeshProUGUI countText;
 
+    [HideInInspector] public Item item;
+    [HideInInspector] public int count = 1;
     [HideInInspector] public Transform parentAfterDrag;
 
+    // Función que va a inicializar el item.
+    public void InitialiseItem(Item newItem)
+    {
+        item = newItem;
+        image.sprite = newItem.image;
+        RefreshCount();
+    }
+
+    //Funcion que manda una variable int a un string para actualizarla si existe 
+    // uno más items iguales.
+    public void RefreshCount()
+    {
+        countText.text = count.ToString();
+        bool textActive = count > 1;
+        countText.gameObject.SetActive(textActive);
+    }
 
     //Se crea la función que inicia el drag- mandando un mensaje que se inicio el drag.
     // Raycast se desactiva para poder mover los iconos por el tolbar.
@@ -18,7 +39,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnBeginDrag(PointerEventData evenData)
     {
 
-        Debug.Log("comenzo el drag");
+       //Debug.Log("comenzo el drag");
         parentAfterDrag = transform.parent;
         transform.SetParent(transform.root);
         image.raycastTarget = false;
@@ -31,7 +52,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     //Manda mensaje de que se está haciendo Dragging.
     public void OnDrag(PointerEventData evenData)
     {
-        Debug.Log("Dragging");
+        //Debug.Log("Dragging");
         transform.position = Input.mousePosition;
     }
 
@@ -41,7 +62,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnEndDrag(PointerEventData eventData)
     {
 
-        Debug.Log("termino el drag");
+       //Debug.Log("termino el drag");
         transform.SetParent(parentAfterDrag);
         image.raycastTarget = true;
        
