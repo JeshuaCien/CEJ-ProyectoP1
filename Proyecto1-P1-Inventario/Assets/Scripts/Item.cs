@@ -14,14 +14,13 @@ public class Item : ScriptableObject
     public int ID;
     public int life;
     public string descripcion;
-    //public TileBase tile;
     public Rareza rareza;
     public Tipo tipo;
     public Habilidad habilidad;
-    public Vector2Int range = new Vector2Int(5, 4);
+    
 
     [Header("Only UI")]
-    public bool stacks = true;
+    public bool stackable = true;
 
     [Header("Only Both")]
     public Sprite image;

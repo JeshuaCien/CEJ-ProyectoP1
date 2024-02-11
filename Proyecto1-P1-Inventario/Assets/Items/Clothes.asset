@@ -19,6 +19,5 @@ MonoBehaviour:
   rareza: 0
   tipo: 0
   habilidad: 0
-  range: {x: 5, y: 4}
-  stacks: 1
+  stackable: 1
   image: {fileID: 21300000, guid: 388ca8bf8f971804b95cd97d37ba1d23, type: 3}

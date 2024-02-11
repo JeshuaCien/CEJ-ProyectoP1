@@ -25,7 +25,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
 
     //Funcion que manda una variable int a un string para actualizarla si existe 
-    // uno más items iguales.
+    // uno o más items iguales.
     public void RefreshCount()
     {
         countText.text = count.ToString();
